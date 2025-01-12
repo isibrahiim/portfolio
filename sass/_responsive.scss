@@ -1,0 +1,194 @@
+@use "variables" as var;
+
+@mixin mobile {
+  @media (max-width: 768px) {
+    header {
+      .toggle-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .toggle-menu .bar {
+        width: 25px;
+        height: 3px;
+        background: #333;
+        margin: 2px 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      nav ul.nav-items {
+        display: none;
+        position: absolute;
+        top: 75px;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 20px 0;
+        z-index: 1500;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+
+        &.active {
+          display: flex;
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        li {
+          width: auto;
+          text-align: center;
+          padding: 10px 0;
+
+          a {
+            color: #fff;
+          }
+
+          // Responsive Dropdown Menu
+          &.dropdown {
+            .dropdown-menu {
+              display: none;
+              position: relative;
+              background: rgba(0, 0, 0, 0.9);
+              padding: 10px;
+              text-align: center;
+
+              li {
+                a {
+                  color: #fff;
+                  &:hover {
+                    color: var.$color-primary;
+                  }
+                }
+              }
+            }
+
+            &.active .dropdown-menu {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 769px) and (max-width: 1024px) {
+    header {
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    nav ul.nav-items {
+      display: flex;
+      gap: 10px;
+
+      li {
+        margin: 0;
+
+        &.dropdown {
+          .dropdown-menu {
+            position: absolute;
+            width: auto;
+            background: var.$header-background-color;
+            padding: 10px;
+            display: none;
+            z-index: 1000;
+
+            li {
+              padding: 5px 0;
+
+              a {
+                font-size: 14px;
+
+                &:hover {
+                  color: var.$color-primary;
+                }
+              }
+            }
+          }
+
+          &:hover .dropdown-menu {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+// resonsiveness for the images on Js tasks page
+@media (max-width: 600px) {
+  #image-container {
+    display: flex !important;
+    flex-direction: column !important; /* Stack images vertically on small screens */
+    align-items: center !important; /* Center images */
+  }
+
+  .image-item {
+    width: 100% !important; /* Ensure each image item takes full width */
+    margin-bottom: 20px !important; /* Space between items */
+    display: flex !important; /* Use flexbox for alignment */
+    flex-direction: column !important; /* Stack items vertically */
+    align-items: center !important; /* Center all items in the column */
+    text-align: center !important; /* Center text in paragraphs */
+  }
+
+  .task2IMG {
+    width: 90% !important; /* Adjust image width to 90% of the container */
+    height: auto !important; /* Maintain aspect ratio */
+    margin: 0 auto !important; /* Center the image */
+  }
+
+  .image-item button {
+    margin-top: 10px !important; /* Add space above the button */
+    width: 90% !important; /* Make button width 90% to match image */
+    text-align: center !important; /* Center text in button */
+    margin: 0 auto !important; /* Center the button */
+  }
+}
+
+// @media (max-width: 600px) {
+//   #image-container {
+//     display: flex !important;
+//     flex-direction: column !important; /* Stack images vertically on small screens */
+//     align-items: center !important; /* Center images */
+//   }
+
+//   .image-item {
+//     width: 100% !important; /* Ensure each image item takes full width */
+//     margin-bottom: 20px !important; /* Space between items */
+//     display: flex !important; /* Use flexbox for alignment */
+//     flex-direction: column !important; /* Stack items vertically */
+//     align-items: center !important; /* Center all items in the column */
+//     text-align: center !important; /* Center text in paragraphs */
+//   }
+
+//   .task2IMG {
+//     width: 80% !important; /* Adjust image width to 80% of the container */
+//     height: auto !important; /* Maintain aspect ratio */
+//     margin: 0 auto !important; /* Center the image */
+//   }
+
+//   .image-item button {
+//     margin-top: 10px !important; /* Add space above the button */
+//     width: 90% !important; /* Make button width 90% to match image */
+//     text-align: center !important; /* Center text in button */
+//     margin: 0 auto !important; /* Center the button */
+//   }
+// }
+
+@include mobile;
+@include tablet;
+
+@include mobile;
+@include tablet;

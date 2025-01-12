@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+    <!-- header  -->
+    <header role="banner" aria-label="Main navigation">
+        <a class="skip-link" href="#main-content">Skip to main content</a>
+        <div class="logo">
+            <figure>
+                <a href="index.php">
+                    <img src="./images/logo-user-img.png" alt="Little Lemon Website Logo" />
+                </a>
+                <figcaption class="visually-hidden">User image Logo</figcaption>
+            </figure>
+        </div>
+
+        <button type="button" class="toggle-menu" id="mobile-menu" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav aria-label="Primary navigation">
+            <ul class="nav-items">
+                <li><a href="index.php">Home</a></li>
+                <li class="dropdown">
+                    <a href="tutorials.php" class="dropdown-toggle" aria-haspopup="true"
+                        aria-expanded="false">Tutorials</a>
+                    <ul class="dropdown-menu" aria-label="Tutorial Categories">
+                        <li><a href="#">HTML</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="php.php" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">PHP</a>
+                            <ul class="dropdown-menu" aria-label="PHP Submenu">
+                                <li><a href="#">Lessons</a></li>
+                                <li><a href="#">Tasks</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">C Language</a></li>
+                        <!-- <li><a href="js.php">JavaScript</a></li> -->
+                        <li class="dropdown-submenu">
+                            <a href="php.php" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Js</a>
+                            <ul class="dropdown-menu" aria-label="PHP Submenu">
+                                <li><a href="#">Lessons</a></li>
+                                <li><a href="jsTasks.php">Tasks</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">CSS & Sass</a></li>
+                        <li><a href="#">jQuery</a></li>
+                        <li><a href="#">Angular</a></li>
+                        <li><a href="#">Database</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="btns order-now" href="#">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Social Media Links - vertical/leftside -->
+    <div class="social-media">
+        <a href="#" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon" title="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+        <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <!-- a general container  -->
+    <div class="container">
+
+        <!-- main section  -->
+        <section class="main-section">
+            <!-- left side of the main section  -->
+            <div class="left-image">
+
+                <!-- text overlay over the image of the main section -->
+                <div class="text-overlay">
+
+                    <h1>Front-End</h1>
+                    <p>The front end is the user-facing part of a website, encompassing everything you see and interact
+                        with, like menus, graphics, and text.</p>
+                    <button class="subscribe-btn">
+                        <span class="button-text">ReadMore</span>
+                        <span class="arrow">→</span>
+                    </button>
+
+                    <!-- Meta Information -->
+                    <div class="post-meta">
+                        <span class="post-date">
+                            <i class="fas fa-calendar-alt"></i> <?php echo date("F j, Y"); ?>
+                        </span>
+                        <span class="post-author">
+                            <i class="fas fa-user"></i> Isse Ibrahim
+                        </span>
+                        <span class="post-read-time">
+                            <i class="fas fa-clock"></i> 2 min read
+                        </span>
+                        <span class="post-comments">
+                            <i class="fas fa-comments"></i> 55 comments
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- right side of the main section  -->
+            <div class="right-content">
+                <div class="about-me">
+                    <h2>About Me</h2>
+                    <div class="about-wrapper">
+                        <img src="./images/tokyoghoul.jpg" alt="Your Image" class="passport-img">
+                        <div class="about-text">
+
+                            <p>Hello! I’m Isse Ibrahim, an ICT student at StadinAO specializing in web design and
+                                development. I’m passionate about creating dynamic websites and applications using
+                                technologies like HTML, CSS, JavaScript, and PHP. My journey in ICT has taught me the
+                                importance of innovation and problem-solving. When I’m not coding, I enjoy exploring
+                                design trends and learning new programming skills to improve my craft. Thank you for
+                                taking the time to view my portfolio—stay awesome! 😄</p>
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. I’m Isse Ibrahim, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                deserunt mollit anim id est laborum. Enjoy reading and stay awesome! 😄</p> -->
+                        </div>
+                    </div>
+                    <button class="about-button">Get to Know Me</button>
+                </div>
+
+                <div class="follow-me">
+                    <h3>Follow Me</h3>
+                    <div class="social-media-horizontal">
+                        <a href="#" class="social-icon" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon" title="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+                        <a href="#" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- First blog -->
+        <section class="section-container">
+            <div class="content-wrapper">
+                <!-- Left section: Blog posts or news -->
+                <div class="main-content">
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h1 class="blog-title">New Blog</h1>
+                        </div>
+                        <div class="post-container">
+                            <div class="post-image">
+                                <img src="./images/html.jpg" alt="Blog Image">
+                            </div>
+                            <div class="post-content">
+                                <!-- date and the author of the blog post -->
+                                <div class="post-meta">
+                                    <span class="post-date">
+                                       <i class="fas fa-calendar-alt"></i> <span class="current-date"></span>
+                                    </span>
+                                    <span class="post-author">
+                                        <i class="fas fa-user"></i> Isse Ibrahim
+                                    </span>
+                                </div>
+                                <h1>How to Convert Checkbox Lists into Dropdown</h1>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error,
+                                    culpa dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error,
+                                    culpa dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+
+                                <button type="button" class="question-btn">Read More</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Right section: Cards for tutorials or additional info -->
+                <aside class="sidebar">
+                    <div class="post-header underline">
+                        <h2 class="aside-text">Learn GitHub!</h2>
+                    </div>
+                    <div class="card">
+                        <img src="./images/github.jfif" alt="Card Image">
+                        <h3>Card Title</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error, culpa
+                            dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+
+
+        <!-- Section 2 -->
+        <section class="section-container">
+            <div class="content-wrapper">
+                <!-- Left section: Blog posts or news -->
+                <div class="main-content">
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h1 class="blog-title">New Blog</h1>
+                        </div>
+                        <div class="post-container">
+                            <div class="post-image">
+                                <img src="./images/php.jpg" alt="Blog Image">
+                            </div>
+                            <div class="post-content">
+                                <!-- date and the author of the blog post -->
+                                <div class="post-meta">
+                                    <span class="post-date">
+                                       <i class="fas fa-calendar-alt"></i> <span class="current-date"></span>
+                                    </span>
+                                    <span class="post-author">
+                                        <i class="fas fa-user"></i> Isse Ibrahim
+                                    </span>
+                                </div>
+                                <h1>How to Convert Checkbox Lists into Dropdown</h1>
+                                <p>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error,
+                                    culpa dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error,
+                                    culpa dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                                </p>
+                                <button type="button" class="question-btn">Read More</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Right section: Cards for tutorials or additional info -->
+                <aside class="sidebar">
+                    <div class="post-header underline">
+                        <h1 class="aside-text">Git Version Control</h1>
+                    </div>
+                    <div class="card">
+                        <img src="./images/git.jpg" alt="Card Image">
+                        <h3>Card Title</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error, culpa
+                            dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+
+                    </div>
+                </aside>
+            </div>
+        </section>
+        <!-- Section 3 -->
+        <section class="section-container">
+            <div class="content-wrapper">
+                <!-- Left section: Blog posts or news -->
+                <div class="main-content">
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h1 class="blog-title">New Blog</h1>
+                        </div>
+                        <div class="post-container">
+                            <div class="post-image">
+                                <img src="./images/css.jpg" alt="Blog Image">
+                            </div>
+                            <div class="post-content">
+                                <!-- date and the author of the blog post -->
+                                <div class="post-meta">
+                                    <span class="post-date">
+                                       <i class="fas fa-calendar-alt"></i> <span class="current-date"></span>
+                                    </span>
+                                    <span class="post-author">
+                                        <i class="fas fa-user"></i> Isse Ibrahim
+                                    </span>
+                                </div>
+                                <h1>How to Convert Checkbox Lists into Dropdown</h1>
+                                <p>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error,
+                                    culpa dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error,
+                                    culpa dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                                </p>
+                                <button id="#" class="question-btn">Read More</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Right section: Cards for tutorials or additional info -->
+                <aside class="sidebar">
+                    <div class="post-header underline">
+                        <h1 class="aside-text">Git Version Control</h1>
+                    </div>
+                    <div class="card">
+                        <img src="./images/git.jpg" alt="Card Image">
+                        <h3>Card Title</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error, culpa
+                            dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="section-container">
+            <div class="content-wrapper">
+                <!-- Left section: Popular Courses -->
+                <div class="main-content">
+                    <article class="blog-post">
+
+                        <div class="post-header">
+                            <h1 class="blog-title">Popular Courses</h1>
+                        </div>
+                        <div class="courses-grid">
+                            <div class="course-card">
+                                <img src="./images/html.jpg" alt="HTML5">
+                                <h3>HTML5</h3>
+                            </div>
+                            <div class="course-card">
+                                <img src="./images/php.jpg" alt="PHP">
+                                <h3>PHP</h3>
+                            </div>
+                            <div class="course-card">
+                                <img src="./images/css.jpg" alt="CSS">
+                                <h3>CSS</h3>
+                            </div>
+                            <div class="course-card">
+                                <img src="./images/sass.jpg" alt="SASS">
+                                <h3>SASS</h3>
+                            </div>
+                            <div class="course-card">
+                                <img src="./images/javascript.png" alt="JavaScript">
+                                <h3>JavaScript</h3>
+                            </div>
+                            <div class="course-card">
+                                <img src="./images/git.jpg" alt="Git">
+                                <h3>Git & GitHub</h3>
+                            </div>
+                            <div class="course-card">
+                                <img src="./images/gitHub.png" alt="GitHub">
+                                <h3>Git & GitHub</h3>
+                            </div>
+                            <div class="course-card">
+                                <img src="./images/database.png" alt="Database">
+                                <h3>Database</h3>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <!-- Right section: Cards for tutorials or additional info -->
+                <aside class="sidebar">
+                    <div class="post-header underline">
+                        <h1 class="aside-text">C language</h1>
+                    </div>
+                    <div class="card">
+                        <img src="./images/clanguage.png" alt="C language">
+                        <h3>C Language </h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error, culpa
+                            dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Section 5: Featured Tutorials -->
+        <section class="section-container">
+            <div class="content-wrapper">
+                <!-- Left section: Featured Tutorials -->
+                <div class="main-content">
+                    <article class="blog-post">
+                        <div class="post-header">
+                            <h1 class="blog-title">Featured Tutorials</h1>
+                        </div>
+                        <div class="tutorials-grid">
+                            <div class="tutorial-card">
+                                <img src="./images/html.jpg" alt="Tutorial 1">
+                                <h3>Tutorial 1</h3>
+                                <p>Brief description of the tutorial...</p>
+                                <button class="tutorial-btn">Learn More</button>
+                            </div>
+                            <div class="tutorial-card">
+                                <img src="./images/css.jpg" alt="Tutorial 2">
+                                <h3>Tutorial 2</h3>
+                                <p>Brief description of the tutorial...</p>
+                                <button class="tutorial-btn">Learn More</button>
+                            </div>
+                            <div class="tutorial-card">
+                                <img src="./images/sass.jpg" alt="Tutorial 3">
+                                <h3>Tutorial 3</h3>
+                                <p>Brief description of the tutorial...</p>
+                                <button class="tutorial-btn">Learn More</button>
+                            </div>
+                            <div class="tutorial-card">
+                                <img src="./images/php.jpg" alt="Tutorial 4">
+                                <h3>Tutorial 4</h3>
+                                <p>Brief description of the tutorial...</p>
+                                <button class="tutorial-btn">Learn More</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Right section: Cards for additional info -->
+                <aside class="sidebar">
+                    <div class="post-header underline">
+                        <h1 class="aside-text">Recommended Tools</h1>
+                    </div>
+                    <div class="card">
+                        <img src="./images/gitHub.png" alt="Tool">
+                        <h3>Tool Name</h3>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero laboriosam error, culpa
+                            dolor ipsa voluptatibus totam esse ipsam iste magni?</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+    </div>
+    <!-- footer -->
+    <footer id="main-footer" class="py-2">
+        <div class="footer-content footer-container ">
+            <div>
+                <!-- <img src="./img/ciise.png" alt="news grid" /> -->
+                <a href="index.html"><img src="./images/ciise.png" alt="logo image" /></a>
+                <p>
+                    Welcome to My Personal Porfolio Website, I create all kinds of
+                    Websites and Mobile Apps
+                </p>
+            </div>
+            <div>
+                <h3>Email new letter</h3>
+                <p>Subscribe To Get The Latest Updates!</p>
+
+                <form method="POST" class="contact-form">
+                    <input type="email" placeholder="Enter Email..." class="email-input2" required />
+                    <input type="button" value="Subscribe" class="btn btn-primary" onclick="sendEmail()" />
+                </form>
+            </div>
+            <div>
+                <h3>Company</h3>
+                <ul class="list">
+                    <li>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="#">Help & Support</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="#">Privicy Policy</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="about.html">About Us</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3>Have Project?</h3>
+                <p>
+                    Any Type Of Query & Discussion, Click the Button Below, I`m
+                    Available
+                </p>
+                <a href="contact.html" class="btn btn-secondary">Get Free Consultation</a>
+            </div>
+            <div class="inner-footer">
+                <p>This Website Was Designed and Developed By: Isse S.Ibrahim</p>
+                <p>Copyright &copy; 2025 Isse Ibrahim. All Rights Reserved.</p>
+              
+                <div class="social">
+                  <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                  <a href="#" target="_blank" title="Instagram" rel="noopener">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" target="_blank" title="Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+                  <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+              </div>
+              
+        </div>
+    </footer>
+ 
+</body>
+
+</html>

@@ -1,0 +1,947 @@
+@use "variables" as var;
+@use "_utilities";
+@use "_responsive" as resp;
+// @use "_jsTasksStyle.scss";
+
+// Reset and general styling
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+// Header styling
+header {
+  background: var.$header-background-color;
+  box-shadow: var.$header-box-shadow;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  min-height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+
+  .logo {
+    img {
+      width: 250px;
+      height: auto;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  }
+
+  nav {
+    ul.nav-items {
+      display: flex;
+      list-style: none;
+
+      li {
+        position: relative;
+        padding: 0 10px;
+        margin: 10px;
+
+        a {
+          text-decoration: none;
+          color: inherit;
+          font-weight: bold;
+          padding-bottom: 5px;
+          border-bottom: 3px solid transparent;
+          transition: border-color 0.3s;
+          text-transform: capitalize;
+
+          &:hover {
+            border-bottom-color: var.$color-gold;
+          }
+        }
+
+        // Dropdown styling for larger screens (hover & click)
+        @media (min-width: 769px) {
+          &.dropdown {
+            .dropdown-toggle {
+              cursor: pointer;
+              position: relative;
+
+              &::after {
+                content: "\25BC";
+                font-size: 12px;
+                margin-left: 5px;
+                display: inline-block;
+                transition: transform 0.3s ease;
+              }
+
+              &:hover::after {
+                transform: rotate(180deg);
+              }
+            }
+
+            .dropdown-menu {
+              display: none;
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              transform: translateX(-50%);
+              background: #fff;
+              box-shadow: var.$header-box-shadow;
+              padding: 10px;
+              list-style: none;
+              z-index: 1001;
+
+              li {
+                padding: 5px 0;
+
+                a {
+                  color: var.$color-dark;
+                  font-size: 14px;
+                  &:hover {
+                    color: var.$color-primary;
+                  }
+                }
+
+                // Sub-dropdown styling
+                &.dropdown {
+                  position: relative;
+
+                  .dropdown-menu {
+                    top: 0;
+                    left: -100%; // Position to the left
+                    transform: translateX(0);
+                  }
+                }
+              }
+            }
+
+            // Activate dropdown on click
+            &.active .dropdown-menu {
+              display: block;
+            }
+          }
+        }
+
+        // Dropdown styling for small screens (click)
+        @media (max-width: 768px) {
+          &.dropdown {
+            .dropdown-toggle {
+              cursor: pointer;
+              position: relative;
+
+              &::after {
+                content: "\25BC";
+                font-size: 12px;
+                margin-left: 5px;
+                display: inline-block;
+                transition: transform 0.3s ease;
+              }
+
+              &.active::after {
+                transform: rotate(180deg);
+              }
+            }
+
+            .dropdown-menu {
+              display: none;
+              position: absolute;
+              top: 100%;
+              left: 0;
+              background: #fff;
+              box-shadow: var.$header-box-shadow;
+              padding: 10px;
+              list-style: none;
+              z-index: 1001;
+
+              li {
+                padding: 5px 0;
+
+                a {
+                  color: var.$color-dark;
+                  font-size: 14px;
+                  &:hover {
+                    color: var.$color-primary;
+                  }
+                }
+
+                // Sub-dropdown styling
+                &.dropdown {
+                  position: relative;
+
+                  .dropdown-menu {
+                    top: 0;
+                    left: -100%; // Position to the left
+                    transform: translateX(0);
+                  }
+                }
+              }
+            }
+
+            // Activate dropdown on click
+            &.active .dropdown-menu {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .toggle-menu {
+    background: none;
+    border: none;
+    flex-direction: column;
+    margin: 10px;
+    cursor: pointer;
+    display: none;
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 2px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+  }
+}
+
+// Media queries for mobile
+@media (max-width: 768px) {
+  .toggle-menu {
+    display: flex; // Show the toggle menu on mobile
+  }
+
+  nav ul.nav-items {
+    display: none; // Hide the navigation items by default
+    position: absolute;
+    top: 75px;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px 0;
+    z-index: 1500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    &.active {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+// Aside /sidebar styling
+.aside-text {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 15px;
+  color: var.$color-dark-charcoal;
+  margin: 0;
+  position: relative;
+  padding: 0 0 10px 10px;
+}
+
+// Standalone Underline Styling
+.underline {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+    width: 90%;
+    border-bottom: 1px solid var.$color-accent;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+    width: 20%;
+    border-bottom: 7px solid var.$color-accent;
+  }
+}
+
+// Social Media Styling (horizontal and vertical)
+.social-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: var.$color-primary;
+  color: var.$color-light;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var.$color-accent;
+  }
+}
+
+// Horizontal Social Media Icons Styling
+.follow-me {
+  text-align: center;
+  margin-top: 20px;
+
+  .social-media-horizontal {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+
+    .social-icon {
+      @extend .social-icon;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 10px;
+    }
+  }
+}
+
+// Vertical Social Media Icons Styling
+.social-media {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  z-index: 1000;
+
+  .social-icon {
+    @extend .social-icon;
+  }
+}
+
+// Main section styling
+.main-section {
+  display: flex;
+  justify-content: space-between;
+
+  // Left side content
+  .left-image {
+    width: 75%;
+    background: url("../images/html.jpg") no-repeat center center/cover;
+    position: relative;
+
+    // Add the overlay
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); // Dark overlay with 50% transparency
+      z-index: 1; // Ensure it’s behind the text but above the image
+    }
+
+    .text-overlay {
+      position: absolute;
+      top: 80%;
+      left: 20px;
+      transform: translateY(-50%);
+      color: var.$color-light;
+      z-index: 2; // Ensure the text appears above the overlay
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+
+      // Responsive adjustments for mobile
+      @media (max-width: 768px) {
+        top: 42%; // Adjust the position for mobile screens
+        left: 10px; // Reduce left space for mobile
+        transform: translateY(-50%);
+        width: 90%; // Ensure the text overlay fits within the mobile screen
+
+        h1 {
+          font-size: 1.8rem; // Smaller font size for the heading
+        }
+
+        p {
+          font-size: 1rem; // Adjust font size for the paragraph
+        }
+      }
+    }
+  }
+
+  // Right side content styling
+  .right-content {
+    width: 25%;
+    padding: 20px;
+
+    .about-me {
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .about-wrapper {
+        display: block;
+
+        .passport-img {
+          width: 150px;
+          height: auto;
+          float: left;
+          margin-right: 15px;
+          margin-bottom: 2px;
+          border-radius: 10px;
+        }
+
+        .about-text {
+          line-height: 1.6;
+
+          p {
+            margin-bottom: 10px;
+            text-align: justify;
+          }
+        }
+      }
+
+      .about-button {
+        margin-top: 5px;
+        padding: 10px 20px;
+        background-color: var.$color-dark-gray; // #333 replaced with var.$color-dark-gray
+        color: var.$color-light; // #fff replaced with var.$color-light
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: var.$color-medium-gray; // #555 replaced with var.$color-medium-gray
+        }
+      }
+    }
+  }
+}
+// *******************************************************************************************
+// All sections container styling
+// *******************************************************************************************
+
+.section-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  .content-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+
+    .main-content {
+      width: 75%;
+      padding-right: 20px;
+
+      .blog-post {
+        border-radius: 8px;
+        background-color: var.$color-light;
+
+        .post-header {
+          margin: 0;
+          padding: 20px 0;
+
+          h1.blog-title {
+            font-size: 24px;
+            color: var.$color-dark-charcoal;
+            margin: 0;
+            position: relative;
+            padding: 0 0 10px 10px;
+            @extend .underline;
+          }
+        }
+
+        .post-container {
+          display: flex;
+          border-radius: 8px;
+          background-color: var.$color-light;
+          overflow: hidden;
+
+          .post-image {
+            flex: 1 1 50%;
+
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .post-content {
+            flex: 1 1 50%;
+            padding: 15px;
+
+            p {
+              font-size: 16px;
+              line-height: 1.6;
+              color: var.$color-dark;
+            }
+          }
+        }
+      }
+    }
+
+    .sidebar {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      background-color: var.$color-light;
+      border-radius: 8px;
+
+      .card {
+        background-color: var.$color-light;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+
+        img {
+          width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+
+        h3 {
+          font-size: 18px;
+          margin-bottom: 10px;
+          color: var.$color-dark-charcoal;
+        }
+
+        p {
+          font-size: 14px;
+          color: var.$color-dark;
+        }
+      }
+    }
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+
+    .course-card {
+      background-color: var.$color-gold;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      img {
+        max-width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 18px;
+        color: var.$color-dark-charcoal;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  .tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+
+    .tutorial-card {
+      background-color: var.$color-gold;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      img {
+        max-width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 18px;
+        color: var.$color-dark-charcoal;
+      }
+
+      p {
+        font-size: 14px;
+        color: var.$color-dark;
+      }
+
+      .tutorial-btn {
+        background-color: var.$color-primary;
+        border: none;
+        color: var.$color-light;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: var.$color-accent;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+// *******************************************************************************************
+// post meta styling for date, author, read time, and comments
+// *******************************************************************************************
+.post-meta {
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif !important;
+  color: var.$color-simpleBlack;
+  display: flex;
+  gap: 15px;
+
+  .post-date,
+  .post-author,
+  .post-read-time,
+  .post-comments {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .main-section & {
+    color: var.$color-light;
+  }
+}
+
+// *******************************************************************************************
+// footer styling
+// *******************************************************************************************
+#main-footer {
+  background: var.$dark-color;
+  color: rgba(255, 255, 255, 0.5);
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5rem;
+    padding: 20px 0;
+
+    h3 {
+      color: #fff;
+    }
+
+    img {
+      width: 75px;
+      margin-left: 100px;
+    }
+
+    input[type="email"] {
+      width: 83%;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    input[type="submit"] {
+      width: 90%;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .list {
+      li {
+        padding: 0.5rem 0;
+        border-bottom: var.$color-dark-gray dotted 1px;
+        width: 90%;
+
+        a {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        a:hover {
+          color: var.$primary-color;
+        }
+      }
+    }
+
+    .inner-footer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-column: 1 / span 4;
+      background: var.$footer-background-color;
+      padding: 0.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+
+      p {
+        padding-top: 10px;
+      }
+
+      .social .fab {
+        background: var.$dark-color;
+        color: #fff;
+        margin-right: 1rem;
+        border: 2px #fff solid;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        line-height: 20px;
+        text-align: center;
+        padding: 0.5rem;
+        box-sizing: content-box;
+
+        &:hover {
+          background: var.$main-color;
+        }
+
+        // Override user-select property
+        -webkit-user-select: auto;
+        user-select: auto;
+      }
+    }
+  }
+}
+
+// *******************************************************************************************
+// media query for footer styling
+// *******************************************************************************************
+@media (max-width: 600px) {
+  #main-footer .footer-content {
+    grid-template-columns: 1fr;
+
+    .inner-footer {
+      grid-template-columns: 1fr;
+      grid-column: 1;
+      padding: 0.75rem;
+
+      .social {
+        margin-top: 1rem;
+      }
+    }
+
+    div:first-child {
+      border-bottom: #ddd dotted 1px;
+      padding-bottom: 1rem;
+
+      img {
+        margin-left: 8rem;
+      }
+    }
+
+    div:nth-child(2) {
+      border-bottom: #ddd dotted 1px;
+      padding-bottom: 1rem;
+    }
+  }
+}
+
+// *******************************************************************************************
+// media query for all sections container styling
+// *******************************************************************************************
+
+@media (max-width: 768px) {
+  .section-container {
+    flex-direction: column;
+
+    .content-wrapper {
+      flex-direction: column;
+
+      .main-content {
+        width: 100%;
+        padding-right: 0;
+
+        .blog-post {
+          .post-container {
+            flex-direction: column;
+          }
+        }
+      }
+
+      .sidebar {
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .main-section {
+    flex-direction: column;
+
+    .left-image {
+      width: 100%;
+      background-size: cover;
+      height: 200px;
+    }
+
+    .right-content {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+}
+// *******************************************************************************************
+// post meta styling for date, author, read time, and comments
+// *******************************************************************************************
+.post-meta {
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif !important;
+  color: var.$color-simpleBlack;
+  display: flex;
+  gap: 15px;
+
+  .post-date,
+  .post-author,
+  .post-read-time,
+  .post-comments {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .main-section & {
+    color: var.$color-light;
+  }
+}
+
+// *******************************************************************************************
+// media query for post-meta styling for date, author, read time, and comments
+// *******************************************************************************************
+
+@media (max-width: 768px) {
+  .post-meta {
+    flex-wrap: wrap;
+    gap: 10px;
+    gap: 10px;
+    color: var.$color-simpleBlack;
+
+    .post-date,
+    .post-author,
+    .post-read-time,
+    .post-comments {
+      // flex: 1 1 100%;
+      flex: 0 0 auto; /* Prevent items from growing */
+    }
+  }
+}
+// *******************************************************************************************
+// Hide vertical social media icons on mobile
+// *******************************************************************************************
+@media (max-width: 768px) {
+  .social-media {
+    display: none; /* Hide vertical social media icons on mobile */
+  }
+}
+
+// *******************************************************************************************
+// media query for all sections container styling
+// *******************************************************************************************
+
+@media (max-width: 768px) {
+  .section-container {
+    flex-direction: column;
+
+    .content-wrapper {
+      flex-direction: column;
+
+      .main-content {
+        width: 100%;
+        padding-right: 0;
+
+        .blog-post {
+          .post-container {
+            flex-direction: column;
+          }
+        }
+      }
+
+      .sidebar {
+        width: 100%;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .main-section {
+    flex-direction: column;
+
+    .left-image {
+      width: 100%;
+      background-size: cover;
+      height: 200px;
+    }
+
+    .right-content {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+}
+
+// *******************************************************************************************
+// media query for post-meta styling for date, author, read time, and comments
+// *******************************************************************************************
+
+@media (max-width: 768px) {
+  .post-meta {
+    flex-wrap: wrap;
+    gap: 10px;
+    gap: 10px;
+    color: var.$color-simpleBlack;
+
+    .post-date,
+    .post-author,
+    .post-read-time,
+    .post-comments {
+      // flex: 1 1 100%;
+      flex: 0 0 auto; /* Prevent items from growing */
+    }
+  }
+}
+// *******************************************************************************************
+// media query for Hiding vertical social media icons on mobile
+// *******************************************************************************************
+@media (max-width: 768px) {
+  .social-media {
+    display: none; /* Hide vertical social media icons on mobile */
+  }
+}
+
+// Include mixins for different device sizes
+@include resp.mobile;
+@include resp.tablet;
+// // @include resp.fold;
